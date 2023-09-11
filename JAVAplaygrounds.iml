@@ -14,7 +14,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://D:/drivers/postgresql-42.6.0.jar!/" />
+          <root url="jar://E:/Programs/packages/postgresql-42.6.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

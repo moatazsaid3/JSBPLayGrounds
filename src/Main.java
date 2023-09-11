@@ -14,15 +14,30 @@ import java.util.stream.Stream;
 
 // Java code for thread creation by extending
 // the Thread class
-
+//
+//final String  createTable = "CREATE TABLE instructor (" +
+//        "\t id serial PRIMARY KEY NOT NULL," +
+//        "\t firstName VARCHAR(50) NOT NULL," +
+//        "\t lastName  VARCHAR(50) NOT NULL," +
+//        "\t email     VARCHAR(255) NOT NULL," +
+//        "\t phoneNumber VARCHAR(22) NOT NULL" +
+//        "\t );";
+//
+//final String  insertIntable = "INSERT INTO instructor(firstName,lastName,email,phoneNumber)\n" +
+//        "VALUES ('ahmed','said','ahmed@gmail.com','011');";
+//final String selectFromTable = "select * from instructor;";
 
 
 public class Main {
 
-    public static void main(String[] args)
-    {
-        PostgresDataBase  DB = new PostgresDataBase();
-        PostgresDataBase.selectAll("Instructor");
+    public static void main(String[] args) {
+        //ArrayList<Instructor> instructors =  PostgresDataBase.selectAll("instructor"); // --> selects all instructors
+        //Instructor instructor = PostgresDataBase.selectByID("instructor",1); // --> selects one isntructor by id
+        try{
+           ArrayList<Instructor> instructors = PostgresDataBase.selectAll("Instructor");
 
+        } catch (ClassNotFoundException | NoSuchMethodException e) {
+            e.printStackTrace();
+        }
     }
 }

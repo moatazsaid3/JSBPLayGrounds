@@ -1,3 +1,6 @@
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Instructor {
     private int id;
     private String firstName;
@@ -7,6 +10,17 @@ public class Instructor {
     private String title;
 
 
+
+    public Instructor(ResultSet rs) throws SQLException {
+        while (rs.next()) {
+            this.id = rs.getInt("id");
+            this.firstName = rs.getString("firstName");
+            this.lastName = rs.getString("lastName");
+            this.email = rs.getString("email");
+            this.phoneNumber = rs.getString("phoneNumber");
+            System.out.println(id + "," + firstName + ","+ lastName+"," + email + "," + phoneNumber);
+        }
+    }
     void Instructor(int id, String firstName, String lastName, String email, String phoneNumber, String title){
          this.id = id;
          this.firstName = firstName;
