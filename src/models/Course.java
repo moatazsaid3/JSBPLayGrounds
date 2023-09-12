@@ -1,5 +1,7 @@
-import java.util.UUID;
+package models;
+
 import java.sql.Timestamp;
+import java.util.UUID;
 
 public class Course {
 

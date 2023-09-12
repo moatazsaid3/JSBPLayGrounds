@@ -1,10 +1,14 @@
+package models;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.UUID;
 
 public class Student {
 
     // Declare the enum type for gender
     public enum Gender {
-        MALE, FEMALE
+        Male, Female
     }
 
     private UUID id;
@@ -16,6 +20,21 @@ public class Student {
     private String phoneNum;
     private long natId;
 
+    public Student(ResultSet rs) throws SQLException {
+        while (rs.next()) {
+
+
+            this.id = (UUID) rs.getObject("id");
+            this.firstName = rs.getString("first_name");
+            this.lastName = rs.getString("last_name");
+            this.age = rs.getInt("age");;
+            this.gender = Gender.valueOf(rs.getString("gender"));
+            this.email = rs.getString("email");
+            this.phoneNum = rs.getString("phone_num");;
+            this.natId = rs.getLong("nat_id");;
+            System.out.println(id + "," + firstName + ","+ lastName+"," + email + "," + phoneNum);
+        }
+    }
     public Student(UUID id, String firstName, String lastName, int age, Gender gender, String email, String phoneNum, long natId) {
 
         this.id = id;

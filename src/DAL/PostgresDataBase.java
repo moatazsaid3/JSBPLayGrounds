@@ -1,11 +1,15 @@
+package DAL;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.lang.reflect.Method;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Parameter;
+import java.util.UUID;
 
-public class PostgresDataBase{
+import models.Instructor;
+
+public abstract class PostgresDataBase{
     private final static String url = "jdbc:postgresql://localhost/center_management";
     private final static String user = "postgres";
     private final static String password = "#Postgres@MS123";
@@ -23,8 +27,15 @@ public class PostgresDataBase{
         return conn;
     }
 
-    static <T> T selectByID(String tableName, int id) {
-        final String selectFromTableByID = "select * from " + tableName + " where id = " + id + ";";
+    static <T,d> T selectByID(String tableName, d id) {
+        String selectFromTableByID ="";
+        if(id.getClass().getSimpleName().equals("String")){
+              selectFromTableByID = "select * from " + tableName + " where id = '" + id.toString() + "';";
+
+        }else{
+              selectFromTableByID = "select * from " + tableName + " where id = " + id.toString() + ";";
+        }
+        System.out.println(id.getClass());
 
         try (
                 Connection connection = connect();
@@ -55,9 +66,10 @@ public class PostgresDataBase{
                 Connection connection = connect();
                 Statement statement = connection.createStatement();
                 ResultSet rs = statement.executeQuery(selectAllFromTable);
-
         ){
             ArrayList<T> objects =new ArrayList<>();
+
+            objects.add((T) constructor.newInstance(rs));
             while (rs.next()) {
                 objects.add((T) constructor.newInstance(rs));
             }
@@ -66,9 +78,26 @@ public class PostgresDataBase{
             ex.printStackTrace();
         }
         return null;
-
     }
+    static <T> void deleteById(String tableName, T id) throws ClassNotFoundException, NoSuchMethodException {
+        String deleteFromTableByID ="";
+        if(id.getClass().getSimpleName().equals("String")){
+            deleteFromTableByID = "delete from " + tableName + " where id = '" + id.toString() + "';";
 
+        }else{
+            deleteFromTableByID = "delete from " + tableName + " where id = " + id.toString() + ";";
+        }
+
+
+        try (
+                Connection connection = connect();
+                Statement statement = connection.createStatement();
+        ){
+            statement.executeUpdate(deleteFromTableByID);
+        } catch ( Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 }
 
 
