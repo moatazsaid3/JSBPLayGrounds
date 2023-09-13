@@ -9,8 +9,6 @@ public class Instructor {
     private String lastName;
     private String email;
     private String phoneNumber;
-    private String title;
-
 
 
     public Instructor(ResultSet rs) throws SQLException {
@@ -29,7 +27,7 @@ public class Instructor {
          this.lastName = lastName;
          this.email = email;
          this.phoneNumber = phoneNumber ;
-         this.title = title;
+
     }
 
     public int getId() {
@@ -50,9 +48,5 @@ public class Instructor {
 
     public String getPhoneNumber() {
         return phoneNumber;
-    }
-
-    public String getTitle() {
-        return title;
     }
 }

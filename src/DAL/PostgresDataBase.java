@@ -1,5 +1,6 @@
 package DAL;
 
+import java.lang.constant.DynamicCallSiteDesc;
 import java.sql.*;
 import java.util.ArrayList;
 import java.lang.reflect.Method;
@@ -28,21 +29,20 @@ public abstract class PostgresDataBase{
     }
 
     static <T,d> T selectByID(String tableName, d id) {
-        String selectFromTableByID ="";
+        String selectFromTableByIDQuery ="";
         if(id.getClass().getSimpleName().equals("String")){
-              selectFromTableByID = "select * from " + tableName + " where id = '" + id.toString() + "';";
+              selectFromTableByIDQuery = "select * from " + tableName + " where id = '" + id.toString() + "';";
 
         }else{
-              selectFromTableByID = "select * from " + tableName + " where id = " + id.toString() + ";";
+              selectFromTableByIDQuery = "select * from " + tableName + " where id = " + id + ";";
         }
-        System.out.println(id.getClass());
 
         try (
                 Connection connection = connect();
                 Statement statement = connection.createStatement();
-                ResultSet rs = statement.executeQuery(selectFromTableByID)
+                ResultSet rs = statement.executeQuery(selectFromTableByIDQuery)
         ){
-            Class c = Class.forName(tableName);
+            Class c = Class.forName("models." + tableName);
             Constructor constructor = c.getConstructor(ResultSet.class);
 
             return  (T)constructor.newInstance(rs);
@@ -53,19 +53,15 @@ public abstract class PostgresDataBase{
     }
 
     static <T> ArrayList<T> selectAll(String tableName) throws ClassNotFoundException, NoSuchMethodException {
+        final String selectAllFromTableQuery = "select * from " + tableName + ";";
 
-        final String selectAllFromTable = "select * from " + tableName + ";";
-
-        Class c = Class.forName(tableName);
+        Class c = Class.forName("models." + tableName);
         Constructor constructor = c.getConstructor(ResultSet.class);
 
-
-
-        //System.out.println(selectFromTable);
         try (
                 Connection connection = connect();
                 Statement statement = connection.createStatement();
-                ResultSet rs = statement.executeQuery(selectAllFromTable);
+                ResultSet rs = statement.executeQuery(selectAllFromTableQuery);
         ){
             ArrayList<T> objects =new ArrayList<>();
 
@@ -80,12 +76,12 @@ public abstract class PostgresDataBase{
         return null;
     }
     static <T> void deleteById(String tableName, T id) throws ClassNotFoundException, NoSuchMethodException {
-        String deleteFromTableByID ="";
+        String deleteFromTableByIDQuery ="";
         if(id.getClass().getSimpleName().equals("String")){
-            deleteFromTableByID = "delete from " + tableName + " where id = '" + id.toString() + "';";
+            deleteFromTableByIDQuery = "delete from " + tableName + " where id = '" + id.toString() + "';";
 
         }else{
-            deleteFromTableByID = "delete from " + tableName + " where id = " + id.toString() + ";";
+            deleteFromTableByIDQuery = "delete from " + tableName + " where id = " + id.toString() + ";";
         }
 
 
@@ -93,10 +89,32 @@ public abstract class PostgresDataBase{
                 Connection connection = connect();
                 Statement statement = connection.createStatement();
         ){
-            statement.executeUpdate(deleteFromTableByID);
+            statement.executeUpdate(deleteFromTableByIDQuery);
         } catch ( Exception ex) {
             ex.printStackTrace();
         }
+    }
+    static void executeQuery(String Query){
+        try (
+                Connection connection = connect();
+                Statement statement = connection.createStatement();
+        ){
+            statement.executeUpdate(Query);
+        } catch ( Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    static ResultSet executeQueryResultSet(String Query){
+        try (
+                Connection connection = connect();
+        ){
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(Query);
+            return rs;
+        } catch ( Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 }
 

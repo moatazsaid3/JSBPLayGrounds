@@ -17,25 +17,25 @@ public class Student {
     private int age;
     private Gender gender;
     private String email;
-    private String phoneNum;
-    private long natId;
+    private String phoneNumber;
+    private long natID;
 
     public Student(ResultSet rs) throws SQLException {
         while (rs.next()) {
 
 
             this.id = (UUID) rs.getObject("id");
-            this.firstName = rs.getString("first_name");
-            this.lastName = rs.getString("last_name");
+            this.firstName = rs.getString("firstName");
+            this.lastName = rs.getString("lastName");
             this.age = rs.getInt("age");;
             this.gender = Gender.valueOf(rs.getString("gender"));
             this.email = rs.getString("email");
-            this.phoneNum = rs.getString("phone_num");;
-            this.natId = rs.getLong("nat_id");;
-            System.out.println(id + "," + firstName + ","+ lastName+"," + email + "," + phoneNum);
+            this.phoneNumber = rs.getString("phoneNumber");;
+            this.natID = rs.getLong("natID");;
+            System.out.println(id + "," + firstName + ","+ lastName+"," + email + "," + phoneNumber);
         }
     }
-    public Student(UUID id, String firstName, String lastName, int age, Gender gender, String email, String phoneNum, long natId) {
+    public Student(UUID id, String firstName, String lastName, int age, Gender gender, String email, String phoneNumber, long natID) {
 
         this.id = id;
         this.firstName = firstName;
@@ -43,8 +43,8 @@ public class Student {
         this.age = age;
         this.gender = gender;
         this.email = email;
-        this.phoneNum = phoneNum;
-        this.natId = natId;
+        this.phoneNumber = phoneNumber;
+        this.natID = natID;
     }
 
     public UUID getId() {
@@ -105,22 +105,22 @@ public class Student {
     }
 
     public String getPhoneNum() {
-        return phoneNum;
+        return phoneNumber;
     }
 
-    public void setPhoneNum(String phoneNum) {
-        if (phoneNum.matches("^\\+?[0-9]{10,15}$")) {
-            this.phoneNum = phoneNum;
+    public void setPhoneNum(String phoneNumber) {
+        if (phoneNumber.matches("^\\+?[0-9]{10,15}$")) {
+            this.phoneNumber = phoneNumber;
         } else {
             throw new IllegalArgumentException("Phone number must be valid");
         }
     }
 
     public long getNatId() {
-        return natId;
+        return natID;
     }
 
     public void setNatId(long natId) {
-        this.natId = natId;
+        this.natID = natId;
     }
 }
