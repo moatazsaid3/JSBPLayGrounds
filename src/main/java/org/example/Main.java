@@ -1,3 +1,5 @@
+package org.example;
+
 
 import DAL.CourseRepo;
 import DAL.InstructorRepo;
@@ -61,7 +63,6 @@ public class Main {
 //            courseRepo.getCourseByID();  //  delete course by id
 //            courseRepo.getCourseNameAndEnrolledStudents(UUID.fromString("73a51cfe-ef3b-49a8-86d8-e99b23d0a150"));
 //            courseRepo.getCourseAndStudentsByLevel(Course.CourseLevel.beginner);
-
 
         } catch (Exception e) {
             e.printStackTrace();

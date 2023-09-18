@@ -1,14 +1,8 @@
 package DAL;
 
-import java.lang.constant.DynamicCallSiteDesc;
+import java.lang.reflect.Constructor;
 import java.sql.*;
 import java.util.ArrayList;
-import java.lang.reflect.Method;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Parameter;
-import java.util.UUID;
-
-import models.Instructor;
 
 public abstract class PostgresDataBase{
     private final static String url = "jdbc:postgresql://localhost/center_management";

@@ -1,11 +1,9 @@
 package DAL;
 
 import models.Course;
-import models.Student;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.UUID;
