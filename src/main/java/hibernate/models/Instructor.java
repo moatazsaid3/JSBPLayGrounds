@@ -1,16 +1,18 @@
-package postgres.models;
+package hibernate.models;
 
 import jakarta.persistence.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.UUID;
 
 @Entity
 @Table(name = "instructor")
 public class Instructor {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
@@ -24,58 +26,43 @@ public class Instructor {
 
     }
 
-    public Instructor(ResultSet rs) throws SQLException {
-        while (rs.next()) {
-            this.id = rs.getInt("id");
-            this.firstName = rs.getString("firstName");
-            this.lastName = rs.getString("lastName");
-            this.email = rs.getString("email");
-            this.phoneNumber = rs.getString("phoneNumber");
-            System.out.println(id + "," + firstName + ","+ lastName+"," + email + "," + phoneNumber);
-        }
-    }
-    void Instructor(int id, String firstName, String lastName, String email, String phoneNumber, String title){
-         this.id = id;
-         this.firstName = firstName;
-         this.lastName = lastName;
-         this.email = email;
-         this.phoneNumber = phoneNumber ;
-
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public int getId() {
+    public UUID getId() {
         return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getPhoneNumber(int i) {
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

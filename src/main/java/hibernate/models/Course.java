@@ -1,10 +1,15 @@
-package postgres.models;
+package hibernate.models;
+
+import hibernate.models.Instructor;
+import jakarta.persistence.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.UUID;
 
+@Entity
+@Table(name = "COURSE")
 public class Course {
 
     // Declare the enum type for course level
@@ -12,41 +17,35 @@ public class Course {
         beginner, advanced, middle
     }
 
-    // Declare the private fields for the class attributes
+    @Id
+    @Column(name = "course_id")
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    @Column(name = "course_name")
     private String name;
+
+    @Column(name = "course_start_date")
     private Timestamp startDate;
+
+    @Column(name = "course_end_date")
     private Timestamp endDate;
+
+    @Column(name = "course_level")
+    @Enumerated(EnumType.STRING)
     private CourseLevel courseLevel;
+
+    @Column(name = "course_started")
     private boolean isStarted;
-    private int instructorID;
 
-    public Course(ResultSet rs) throws SQLException {
-        while (rs.next()) {
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "instructor_id")
+    @Column(name = "instructor_id")
+    private UUID instructorID;
 
+    public Course(){
 
-            this.id = (UUID) rs.getObject("id");
-            this.name = rs.getString("name");
-            this.startDate = rs.getTimestamp("startDate");
-            this.endDate = rs.getTimestamp("endDate");;
-            this.courseLevel = CourseLevel.valueOf(rs.getString("courseLevel"));
-            this.isStarted = rs.getBoolean("isStarted");
-            this.instructorID = rs.getInt("instructorID");;
-            System.out.println(id + "," + name + ","+ startDate+"," + endDate + "," + courseLevel + "," + isStarted + "," + instructorID );
-        }
-    }
-    // Create a constructor with parameters for all the fields
-    public Course(UUID id, String name, Timestamp startDate, Timestamp endDate, CourseLevel courseLevel, boolean isStarted, int instructorID) {
-        this.id = id;
-        this.name = name;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.courseLevel = courseLevel;
-        this.isStarted = isStarted;
-        this.instructorID = instructorID;
     }
 
-    // Create getters and setters for all the fields
     public UUID getId() {
         return id;
     }
@@ -63,43 +62,43 @@ public class Course {
         this.name = name;
     }
 
-    public Timestamp getStart_date() {
+    public Timestamp getStartDate() {
         return startDate;
     }
 
-    public void setStart_date(Timestamp startDate) {
+    public void setStartDate(Timestamp startDate) {
         this.startDate = startDate;
     }
 
-    public Timestamp getEnd_date() {
+    public Timestamp getEndDate() {
         return endDate;
     }
 
-    public void setEnd_date(Timestamp endDate) {
+    public void setEndDate(Timestamp endDate) {
         this.endDate = endDate;
     }
 
-    public CourseLevel getCourse_level() {
+    public CourseLevel getCourseLevel() {
         return courseLevel;
     }
 
-    public void setCourse_level(CourseLevel course_level) {
-        this.courseLevel = course_level;
+    public void setCourseLevel(CourseLevel courseLevel) {
+        this.courseLevel = courseLevel;
     }
 
-    public boolean isIs_started() {
+    public boolean isStarted() {
         return isStarted;
     }
 
-    public void setIs_started(boolean is_started) {
-        this.isStarted = is_started;
+    public void setStarted(boolean started) {
+        isStarted = started;
     }
 
-    public int getInstructor_id() {
+    public UUID getInstructorID() {
         return instructorID;
     }
 
-    public void setInstructor_id(int instructor_id) {
-        this.instructorID= instructor_id;
+    public void setInstructorID(UUID instructorID) {
+        this.instructorID = instructorID;
     }
 }

@@ -1,4 +1,10 @@
-package postgres.models;
+package hibernate.models;
+
+
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,14 +16,22 @@ public class Student {
     public enum Gender {
         Male, Female
     }
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    @Column(name = "student_first_name")
     private String firstName;
+    @Column(name = "student_last_name")
     private String lastName;
+    @Column(name = "student_age")
     private int age;
+    @Column(name = "student_gender")
     private Gender gender;
+    @Column(name = "student_email")
     private String email;
+    @Column(name = "student_phone_number")
     private String phoneNumber;
+    @Column(name = "student_nat_id")
     private long natID;
 
     public Student(ResultSet rs) throws SQLException {
