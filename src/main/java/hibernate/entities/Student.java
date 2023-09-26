@@ -1,20 +1,21 @@
-package hibernate.models;
+package hibernate.entities;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
+@Entity
+@Table(name = "student")
 public class Student {
+
+
 
     // Declare the enum type for gender
     public enum Gender {
-        Male, Female
+        Male, Female;
     }
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -33,24 +34,11 @@ public class Student {
     private String phoneNumber;
     @Column(name = "student_nat_id")
     private long natID;
+    public Student() {
 
-    public Student(ResultSet rs) throws SQLException {
-        while (rs.next()) {
-
-
-            this.id = (UUID) rs.getObject("id");
-            this.firstName = rs.getString("firstName");
-            this.lastName = rs.getString("lastName");
-            this.age = rs.getInt("age");;
-            this.gender = Gender.valueOf(rs.getString("gender"));
-            this.email = rs.getString("email");
-            this.phoneNumber = rs.getString("phoneNumber");;
-            this.natID = rs.getLong("natID");;
-            System.out.println(id + "," + firstName + ","+ lastName+"," + email + "," + phoneNumber);
-        }
     }
-    public Student(UUID id, String firstName, String lastName, int age, Gender gender, String email, String phoneNumber, long natID) {
 
+    public Student(UUID id, String firstName, String lastName, int age, Gender gender, String email, String phoneNumber, long natID) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -90,12 +78,7 @@ public class Student {
     }
 
     public void setAge(int age) {
-        // Check if the age is positive
-        if (age > 0) {
-            this.age = age;
-        } else {
-            throw new IllegalArgumentException("Age must be positive");
-        }
+        this.age = age;
     }
 
     public Gender getGender() {
@@ -111,30 +94,23 @@ public class Student {
     }
 
     public void setEmail(String email) {
-        if (email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
-            this.email = email;
-        } else {
-            throw new IllegalArgumentException("Email must be valid");
-        }
+        this.email = email;
     }
 
-    public String getPhoneNum() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNum(String phoneNumber) {
-        if (phoneNumber.matches("^\\+?[0-9]{10,15}$")) {
-            this.phoneNumber = phoneNumber;
-        } else {
-            throw new IllegalArgumentException("Phone number must be valid");
-        }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public long getNatId() {
+    public long getNatID() {
         return natID;
     }
 
-    public void setNatId(long natId) {
-        this.natID = natId;
+    public void setNatID(long natID) {
+        this.natID = natID;
     }
+
 }

@@ -1,9 +1,8 @@
-package hibernate.models;
+package hibernate.entities;
 
 import jakarta.persistence.*;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -22,8 +21,22 @@ public class Instructor {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+    @OneToMany(mappedBy="instructor")
+    private Set<Course> courses;
+    @OneToOne(mappedBy = "instructor")
+    private InstructorDetails details;
+
     public  Instructor(){
 
+    }
+    public Instructor(UUID id, String firstName, String lastName, String email, String phoneNumber, Set<Course> courses, InstructorDetails details) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.courses = courses;
+        this.details = details;
     }
 
     public UUID getId() {
@@ -64,5 +77,17 @@ public class Instructor {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Instructor{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", details=" + details.toString() +
+                '}';
     }
 }

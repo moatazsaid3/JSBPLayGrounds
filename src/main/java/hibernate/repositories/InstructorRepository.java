@@ -1,7 +1,7 @@
-package hibernate.DAO;
+package hibernate.repositories;
 
 import hibernate.Hibernate;
-import hibernate.models.Instructor;
+import hibernate.entities.Instructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -10,22 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 
-public class InstructorDAO implements DAO{
-    private SessionFactory factory = Hibernate.getFactory();
-    @Override
-    public void save(Object instructor) {
-        Transaction transaction = null;
-        try(Session session = factory.openSession()) {
-            transaction = session.beginTransaction();
-            session.persist(instructor);
-            transaction.commit();
-        } catch (Exception e) {
-            if(transaction != null)
-                transaction.rollback();
-        }
-
-    }
-
+public class InstructorRepository extends Repository {
     @Override
     public Instructor getById(UUID id) {
         Transaction transaction = null;
@@ -54,19 +39,6 @@ public class InstructorDAO implements DAO{
                 transaction.rollback();
         }
         return instructors;
-    }
-
-    @Override
-    public void update(Object instructor) {
-        Transaction transaction = null;
-        try(Session session = factory.openSession()) {
-            transaction = session.beginTransaction();
-            session.saveOrUpdate(instructor);
-            transaction.commit();
-        } catch (Exception e) {
-            if(transaction != null)
-                transaction.rollback();
-        }
     }
 
     @Override

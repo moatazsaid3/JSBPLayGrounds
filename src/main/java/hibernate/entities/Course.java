@@ -1,15 +1,12 @@
-package hibernate.models;
+package hibernate.entities;
 
-import hibernate.models.Instructor;
 import jakarta.persistence.*;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.UUID;
 
 @Entity
-@Table(name = "COURSE")
+@Table(name = "course")
 public class Course {
 
     // Declare the enum type for course level
@@ -39,11 +36,25 @@ public class Course {
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "instructor_id")
-    @Column(name = "instructor_id")
-    private UUID instructorID;
+
+
+    @ManyToOne()
+    @JoinColumn(name = "instructor_id")
+    private Instructor instructor;
 
     public Course(){
 
+    }
+
+
+    public Course(UUID id, String name, Timestamp startDate, Timestamp endDate, CourseLevel courseLevel, boolean isStarted, Instructor instructor) {
+        this.id = id;
+        this.name = name;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.courseLevel = courseLevel;
+        this.isStarted = isStarted;
+        this.instructor = instructor;
     }
 
     public UUID getId() {
@@ -94,11 +105,21 @@ public class Course {
         isStarted = started;
     }
 
-    public UUID getInstructorID() {
-        return instructorID;
+    public Instructor getInstructor() {
+        return instructor;
+    }
+    @Override
+    public String toString() {
+        return "Course{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", courseLevel=" + courseLevel +
+                ", isStarted=" + isStarted +
+                ", instructor=" + instructor.toString() +
+                '}';
     }
 
-    public void setInstructorID(UUID instructorID) {
-        this.instructorID = instructorID;
-    }
+
 }

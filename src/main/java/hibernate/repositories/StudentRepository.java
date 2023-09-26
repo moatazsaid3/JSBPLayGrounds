@@ -1,8 +1,7 @@
-package hibernate.DAO;
+package hibernate.repositories;
 
 import hibernate.Hibernate;
-import hibernate.models.Instructor;
-import hibernate.models.Student;
+import hibernate.entities.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -10,21 +9,8 @@ import org.hibernate.Transaction;
 import java.util.List;
 import java.util.UUID;
 
-public class StudentDAO implements DAO{
-    private SessionFactory factory = Hibernate.getFactory();
-    @Override
-    public void save(Object student) {
-        Transaction transaction = null;
-        try(Session session = factory.openSession()) {
-            transaction = session.beginTransaction();
-            session.persist(student);
-            transaction.commit();
-        } catch (Exception e) {
-            if(transaction != null)
-                transaction.rollback();
-        }
+public class StudentRepository extends Repository {
 
-    }
 
     @Override
     public Student getById(UUID id) {
@@ -40,7 +26,6 @@ public class StudentDAO implements DAO{
         }
         return student;
     }
-
     @Override
     public List getAll() {
         Transaction transaction = null;
@@ -55,20 +40,6 @@ public class StudentDAO implements DAO{
         }
         return students;
     }
-
-    @Override
-    public void update(Object student) {
-        Transaction transaction = null;
-        try(Session session = factory.openSession()) {
-            transaction = session.beginTransaction();
-            session.saveOrUpdate(student);
-            transaction.commit();
-        } catch (Exception e) {
-            if(transaction != null)
-                transaction.rollback();
-        }
-    }
-
     @Override
     public void deleteById(UUID id) {
         Transaction transaction = null;
