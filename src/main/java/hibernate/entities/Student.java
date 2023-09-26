@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -15,9 +16,10 @@ public class Student {
 
     // Declare the enum type for gender
     public enum Gender {
-        Male, Female;
+        male, female;
     }
     @Id
+    @Column(name = "student_id")
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     @Column(name = "student_first_name")
@@ -27,18 +29,21 @@ public class Student {
     @Column(name = "student_age")
     private int age;
     @Column(name = "student_gender")
+    @Enumerated(EnumType.STRING)
     private Gender gender;
     @Column(name = "student_email")
     private String email;
     @Column(name = "student_phone_number")
     private String phoneNumber;
     @Column(name = "student_nat_id")
-    private long natID;
+    private String natID;
+    @ManyToMany(mappedBy = "students",fetch = FetchType.EAGER)
+    private Set<Course> Courses;
     public Student() {
 
     }
 
-    public Student(UUID id, String firstName, String lastName, int age, Gender gender, String email, String phoneNumber, long natID) {
+    public Student(UUID id, String firstName, String lastName, int age, Gender gender, String email, String phoneNumber, String natID) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -105,12 +110,25 @@ public class Student {
         this.phoneNumber = phoneNumber;
     }
 
-    public long getNatID() {
+    public String getNatID() {
         return natID;
     }
 
-    public void setNatID(long natID) {
+    public void setNatID(String natID) {
         this.natID = natID;
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", gender=" + gender +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", natID='" + natID + '\'' +
+                '}';
+    }
 }

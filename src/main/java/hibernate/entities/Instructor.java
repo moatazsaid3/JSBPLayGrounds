@@ -21,9 +21,9 @@ public class Instructor {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @OneToMany(mappedBy="instructor")
+    @OneToMany(mappedBy="instructor",fetch = FetchType.EAGER)
     private Set<Course> courses;
-    @OneToOne(mappedBy = "instructor")
+    @OneToOne(mappedBy = "instructor", fetch = FetchType.EAGER)
     private InstructorDetails details;
 
     public  Instructor(){
@@ -87,7 +87,8 @@ public class Instructor {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", details=" + details.toString() +
+                ", courses=" + courses +
+                ", details=" + details +
                 '}';
     }
 }

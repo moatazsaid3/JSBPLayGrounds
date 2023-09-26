@@ -20,7 +20,7 @@ public abstract class Repository<T>{
         Transaction transaction = null;
         try(Session session = factory.openSession()) {
             transaction = session.beginTransaction();
-            session.persist(obj);
+            session.save(obj);
             transaction.commit();
         } catch (Exception e) {
             if(transaction != null)

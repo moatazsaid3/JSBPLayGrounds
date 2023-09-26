@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.49">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>887</IntrospectionStateNumber>
+      <IntrospectionStateNumber>897</IntrospectionStateNumber>
       <ServerVersion>15.4</ServerVersion>
       <StartupTime>1695689628</StartupTime>
       <TimeZones>true ACDT
@@ -801,17 +801,17 @@ false Zulu
 13183||10|C|G
 13183||-9223372036854775808|U|G
 13183||10|U|G</Grants>
-      <IntrospectionStateNumber>887</IntrospectionStateNumber>
+      <IntrospectionStateNumber>897</IntrospectionStateNumber>
       <ObjectId>16487</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
-    <database id="3" parent="1" name="postgres">
-      <Comment>default administrative connection database</Comment>
-      <ObjectId>5</ObjectId>
+    <database id="3" parent="1" name="playgrounds">
+      <ObjectId>16398</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
-    <database id="4" parent="1" name="playgrounds">
-      <ObjectId>16398</ObjectId>
+    <database id="4" parent="1" name="postgres">
+      <Comment>default administrative connection database</Comment>
+      <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
     <role id="5" parent="1" name="pg_checkpoint">
@@ -4247,9 +4247,9 @@ false Zulu
     <schema id="265" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>887</IntrospectionStateNumber>
-      <IntrospectionTimestamp>2023-09-26.06:24:45.529</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-09-26.03:24:45</LocalIntrospectionTimestamp>
+      <IntrospectionStateNumber>897</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2023-09-26.08:12:38.708</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-09-26.05:12:39</LocalIntrospectionTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>518</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -4293,54 +4293,60 @@ female</Labels>
     </table>
     <table id="271" parent="265" name="student">
       <ObjectId>16619</ObjectId>
-      <StateNumber>837</StateNumber>
+      <StateNumber>896</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <column id="272" parent="268" name="course_id">
+    <table id="272" parent="265" name="student_course">
+      <ObjectId>16705</ObjectId>
+      <StateNumber>896</StateNumber>
+      <AccessMethodId>2</AccessMethodId>
+      <OwnerName>postgres</OwnerName>
+    </table>
+    <column id="273" parent="268" name="course_id">
       <DasType>uuid|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>828</StateNumber>
       <TypeId>2950</TypeId>
     </column>
-    <column id="273" parent="268" name="course_name">
+    <column id="274" parent="268" name="course_name">
       <DasType>varchar|0s</DasType>
       <Position>2</Position>
       <StateNumber>828</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="274" parent="268" name="course_start_date">
+    <column id="275" parent="268" name="course_start_date">
       <DasType>timestamp|0s</DasType>
       <Position>3</Position>
       <StateNumber>828</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="275" parent="268" name="course_end_date">
+    <column id="276" parent="268" name="course_end_date">
       <DasType>timestamp|0s</DasType>
       <Position>4</Position>
       <StateNumber>828</StateNumber>
       <TypeId>1114</TypeId>
     </column>
-    <column id="276" parent="268" name="course_level">
+    <column id="277" parent="268" name="course_level">
       <DasType>course_level|0s</DasType>
       <Position>5</Position>
       <StateNumber>828</StateNumber>
       <TypeId>16508</TypeId>
     </column>
-    <column id="277" parent="268" name="course_started">
+    <column id="278" parent="268" name="course_started">
       <DasType>boolean|0s</DasType>
       <Position>6</Position>
       <StateNumber>828</StateNumber>
       <TypeId>16</TypeId>
     </column>
-    <column id="278" parent="268" name="instructor_id">
+    <column id="279" parent="268" name="instructor_id">
       <DasType>uuid|0s</DasType>
       <Position>7</Position>
       <StateNumber>828</StateNumber>
       <TypeId>2950</TypeId>
     </column>
-    <foreign-key id="279" parent="268" name="course_instructor_id_fkey">
+    <foreign-key id="280" parent="268" name="course_instructor_id_fkey">
       <ColNames>instructor_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16595</ObjectId>
@@ -4348,7 +4354,7 @@ female</Labels>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16500</RefTableId>
     </foreign-key>
-    <index id="280" parent="268" name="course_pkey">
+    <index id="281" parent="268" name="course_pkey">
       <ColNames>course_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16593</ObjectId>
@@ -4357,49 +4363,49 @@ female</Labels>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="281" parent="268" name="course_pkey">
+    <key id="282" parent="268" name="course_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16594</ObjectId>
       <Primary>1</Primary>
       <StateNumber>828</StateNumber>
       <UnderlyingIndexId>16593</UnderlyingIndexId>
     </key>
-    <column id="282" parent="269" name="id">
+    <column id="283" parent="269" name="id">
       <DasType>uuid|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>786</StateNumber>
       <TypeId>2950</TypeId>
     </column>
-    <column id="283" parent="269" name="first_name">
+    <column id="284" parent="269" name="first_name">
       <DasType>varchar|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>787</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="284" parent="269" name="last_name">
+    <column id="285" parent="269" name="last_name">
       <DasType>varchar|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StateNumber>787</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="285" parent="269" name="email">
+    <column id="286" parent="269" name="email">
       <DasType>varchar|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>787</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="286" parent="269" name="phone_number">
+    <column id="287" parent="269" name="phone_number">
       <DasType>varchar|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>787</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="287" parent="269" name="instructor_pkey">
+    <index id="288" parent="269" name="instructor_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16505</ObjectId>
@@ -4408,46 +4414,46 @@ female</Labels>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="288" parent="269" name="instructor_pkey">
+    <key id="289" parent="269" name="instructor_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16506</ObjectId>
       <Primary>1</Primary>
       <StateNumber>786</StateNumber>
       <UnderlyingIndexId>16505</UnderlyingIndexId>
     </key>
-    <column id="289" parent="270" name="details_id">
+    <column id="290" parent="270" name="details_id">
       <DasType>uuid|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>882</StateNumber>
       <TypeId>2950</TypeId>
     </column>
-    <column id="290" parent="270" name="instructor_hobbies">
+    <column id="291" parent="270" name="instructor_hobbies">
       <DasType>varchar(255)|0s</DasType>
       <Position>2</Position>
       <StateNumber>882</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="291" parent="270" name="instructor_youtube_channel">
+    <column id="292" parent="270" name="instructor_youtube_channel">
       <DasType>varchar(255)|0s</DasType>
       <Position>3</Position>
       <StateNumber>882</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="292" parent="270" name="instructor_id">
+    <column id="293" parent="270" name="instructor_id">
       <DasType>uuid|0s</DasType>
       <Position>4</Position>
       <StateNumber>882</StateNumber>
       <TypeId>2950</TypeId>
     </column>
-    <foreign-key id="293" parent="270" name="fkpcc181ybroli58anvhyxcbfsl">
+    <foreign-key id="294" parent="270" name="fkpcc181ybroli58anvhyxcbfsl">
       <ColNames>instructor_id</ColNames>
       <ObjectId>16700</ObjectId>
       <StateNumber>885</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16500</RefTableId>
     </foreign-key>
-    <index id="294" parent="270" name="instructor_details_pkey">
+    <index id="295" parent="270" name="instructor_details_pkey">
       <ColNames>details_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16696</ObjectId>
@@ -4456,75 +4462,75 @@ female</Labels>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="295" parent="270" name="uk_l3mwbmkaw8nvu9os35mvkguon">
+    <index id="296" parent="270" name="uk_l3mwbmkaw8nvu9os35mvkguon">
       <ColNames>instructor_id</ColNames>
       <ObjectId>16698</ObjectId>
       <StateNumber>884</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="296" parent="270" name="instructor_details_pkey">
+    <key id="297" parent="270" name="instructor_details_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16697</ObjectId>
       <Primary>1</Primary>
       <StateNumber>882</StateNumber>
       <UnderlyingIndexId>16696</UnderlyingIndexId>
     </key>
-    <key id="297" parent="270" name="uk_l3mwbmkaw8nvu9os35mvkguon">
+    <key id="298" parent="270" name="uk_l3mwbmkaw8nvu9os35mvkguon">
       <ObjectId>16699</ObjectId>
       <StateNumber>884</StateNumber>
       <UnderlyingIndexId>16698</UnderlyingIndexId>
     </key>
-    <column id="298" parent="271" name="student_id">
+    <column id="299" parent="271" name="student_id">
       <DasType>uuid|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StateNumber>837</StateNumber>
       <TypeId>2950</TypeId>
     </column>
-    <column id="299" parent="271" name="student_first_name">
+    <column id="300" parent="271" name="student_first_name">
       <DasType>varchar|0s</DasType>
       <Position>2</Position>
       <StateNumber>837</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="300" parent="271" name="student_last_name">
+    <column id="301" parent="271" name="student_last_name">
       <DasType>varchar|0s</DasType>
       <Position>3</Position>
       <StateNumber>837</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="301" parent="271" name="student_age">
+    <column id="302" parent="271" name="student_age">
       <DasType>integer|0s</DasType>
       <Position>4</Position>
       <StateNumber>837</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="302" parent="271" name="student_gender">
+    <column id="303" parent="271" name="student_gender">
       <DasType>gender|0s</DasType>
       <Position>5</Position>
       <StateNumber>837</StateNumber>
       <TypeId>16601</TypeId>
     </column>
-    <column id="303" parent="271" name="student_email">
+    <column id="304" parent="271" name="student_email">
       <DasType>varchar|0s</DasType>
       <Position>6</Position>
       <StateNumber>837</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="304" parent="271" name="student_phone_number">
+    <column id="305" parent="271" name="student_phone_number">
       <DasType>varchar|0s</DasType>
       <Position>7</Position>
       <StateNumber>837</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="305" parent="271" name="student_nat_id">
+    <column id="306" parent="271" name="student_nat_id">
       <DasType>varchar|0s</DasType>
       <Position>8</Position>
       <StateNumber>837</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="306" parent="271" name="student_pkey">
+    <index id="307" parent="271" name="student_pkey">
       <ColNames>student_id</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16624</ObjectId>
@@ -4533,12 +4539,59 @@ female</Labels>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="307" parent="271" name="student_pkey">
+    <key id="308" parent="271" name="student_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16625</ObjectId>
       <Primary>1</Primary>
       <StateNumber>837</StateNumber>
       <UnderlyingIndexId>16624</UnderlyingIndexId>
+    </key>
+    <column id="309" parent="272" name="student_id">
+      <DasType>uuid|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StateNumber>896</StateNumber>
+      <TypeId>2950</TypeId>
+    </column>
+    <column id="310" parent="272" name="course_id">
+      <DasType>uuid|0s</DasType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StateNumber>896</StateNumber>
+      <TypeId>2950</TypeId>
+    </column>
+    <foreign-key id="311" parent="272" name="student_course_student_id_fkey">
+      <ColNames>student_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16710</ObjectId>
+      <StateNumber>896</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>16619</RefTableId>
+    </foreign-key>
+    <foreign-key id="312" parent="272" name="student_course_course_id_fkey">
+      <ColNames>course_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16715</ObjectId>
+      <StateNumber>896</StateNumber>
+      <RefKeyColPositions>1</RefKeyColPositions>
+      <RefTableId>16588</RefTableId>
+    </foreign-key>
+    <index id="313" parent="272" name="student_course_pkey">
+      <ColNames>student_id
+course_id</ColNames>
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16708</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>896</StateNumber>
+      <Unique>1</Unique>
+      <AccessMethodId>403</AccessMethodId>
+    </index>
+    <key id="314" parent="272" name="student_course_pkey">
+      <NameSurrogate>1</NameSurrogate>
+      <ObjectId>16709</ObjectId>
+      <Primary>1</Primary>
+      <StateNumber>896</StateNumber>
+      <UnderlyingIndexId>16708</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>

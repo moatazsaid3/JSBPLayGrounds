@@ -3,6 +3,8 @@ package hibernate.entities;
 import jakarta.persistence.*;
 
 import java.sql.Timestamp;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -34,13 +36,18 @@ public class Course {
     @Column(name = "course_started")
     private boolean isStarted;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "instructor_id")
-
-
     @ManyToOne()
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "student_course",
+            joinColumns = { @JoinColumn(name = "course_id") },
+            inverseJoinColumns = { @JoinColumn(name = "student_id") }
+    )
+    Set<Student> students ;
+
 
     public Course(){
 
@@ -108,18 +115,31 @@ public class Course {
     public Instructor getInstructor() {
         return instructor;
     }
-    @Override
-    public String toString() {
-        return "Course{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", courseLevel=" + courseLevel +
-                ", isStarted=" + isStarted +
-                ", instructor=" + instructor.toString() +
-                '}';
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
     }
 
+    public Set<Student> getStudents() {
+        return students;
+    }
 
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+    }
+
+    @Override
+    public String toString() {
+
+        return "Course{" + "\n" +
+                "id=" + id + "\n" +
+                ", name='" + name + '\'' + "\n" +
+                ", startDate=" + startDate + "\n" +
+                ", endDate=" + endDate + "\n" +
+                ", courseLevel=" + courseLevel + "\n" +
+                ", isStarted=" + isStarted + "\n" +
+                ", instructor=" + instructor.getFirstName()+" "+ instructor.getLastName() + "\n" +
+                ", students=" + students +
+                '}';
+    }
 }

@@ -72,7 +72,6 @@ public class InstructorDetails {
                 "id=" + id +
                 ", youtubeChannel='" + youtubeChannel + '\'' +
                 ", instructorHobbies='" + instructorHobbies + '\'' +
-                ", instructor='" + instructor.toString() + '\'' +
                 '}';
     }
 }

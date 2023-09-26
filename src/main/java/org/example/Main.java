@@ -25,13 +25,13 @@ public class Main {
 //            ins.setPhoneNumber("011");
 //            ins.setId(UUID.fromString("c8ad0689-b393-4ca9-b8a0-13a184538297"));
 
-//            InstructorRepository insRepo = new InstructorRepository();
+            InstructorRepository insRepo = new InstructorRepository();
 //            insRepo.save(ins); // CREATE INSTRUCTOR FROM AN OBJ --> DOESN'T WORK WITH PERSIST
-//            Instructor  ins =  insRepo.getById(UUID.fromString("aca490ed-8c4a-4620-9977-7af1c12cbb57")); // GET BY ID
+            Instructor  ins =  insRepo.getById(UUID.fromString("aca490ed-8c4a-4620-9977-7af1c12cbb57")); // GET BY ID
 //            List<Instructor> instructors = insRep.getAll(); //get all
 //            insRepo.update(ins); // updates Instructor
 //            insRepo.deleteById(UUID.fromString("c8ad0689-b393-4ca9-b8a0-13a184538297")); //Delete By ID
-//            System.out.println(ins.toString());
+            System.out.println(ins.toString());
 
     }
     static void CourseTesting(){
@@ -76,7 +76,7 @@ public class Main {
 //            student.setFirstName("student");
 //            student.setLastName("2");
 //            student.setAge(23);
-//            student.setGender(Student.Gender.Male);
+//            student.setGender(Student.Gender.male);
 //            student.setEmail("student2@Gmail.com");
 //            student.setPhoneNumber("012");
 //            student.setNatID("121461232");
@@ -97,6 +97,7 @@ public class Main {
             CourseTesting();
 //            InstructorDetailsTest();
 //            InstructorTesting();
+//            StudentTesting();
 
 
 
