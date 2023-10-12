@@ -20,13 +20,12 @@ public abstract class Repository<T>{
         Transaction transaction = null;
         try(Session session = factory.openSession()) {
             transaction = session.beginTransaction();
-            session.save(obj);
+            session.persist(obj);
             transaction.commit();
         } catch (Exception e) {
             if(transaction != null)
                 transaction.rollback();
         }
-
     }
     public void update(Object obj) {
         Transaction transaction = null;
@@ -39,5 +38,6 @@ public abstract class Repository<T>{
                 transaction.rollback();
         }
     }
+
 
 }

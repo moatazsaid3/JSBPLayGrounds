@@ -81,14 +81,22 @@ public class Instructor {
 
     @Override
     public String toString() {
-        return "Instructor{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", courses=" + courses +
-                ", details=" + details +
+        return "Instructor{" + "\n" +
+                "id=" + id +"\n" +
+                ", firstName='" + firstName + '\'' +"\n" +
+                ", lastName='" + lastName + '\'' +"\n" +
+                ", email='" + email + '\'' +"\n" +
+                ", phoneNumber='" + phoneNumber + '\'' +"\n" +
+                ", courses=" + courses +"\n" +
+                ", details=" + details +"\n" +
                 '}';
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    public InstructorDetails getDetails() {
+        return details;
     }
 }

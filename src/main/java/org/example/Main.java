@@ -17,21 +17,27 @@ public class Main {
     static void InstructorTesting(){
 
         //Instructor
-
+//
 //            Instructor ins = new Instructor();
 //            ins.setFirstName("instructor");
-//            ins.setLastName("6");
-//            ins.setEmail("instructor6@gmail.com");
+//            ins.setLastName("8");
+//            ins.setEmail("instructor8@gmail.com");
 //            ins.setPhoneNumber("011");
 //            ins.setId(UUID.fromString("c8ad0689-b393-4ca9-b8a0-13a184538297"));
 
             InstructorRepository insRepo = new InstructorRepository();
-//            insRepo.save(ins); // CREATE INSTRUCTOR FROM AN OBJ --> DOESN'T WORK WITH PERSIST
-            Instructor  ins =  insRepo.getById(UUID.fromString("aca490ed-8c4a-4620-9977-7af1c12cbb57")); // GET BY ID
+//            insRepo.save(ins); // CREATE INSTRUCTOR FROM AN OBJ
+//            Instructor  ins =  insRepo.getById(UUID.fromString("aca490ed-8c4a-4620-9977-7af1c12cbb57")); // GET BY ID
+//                insRepo.theNPlusOne();
 //            List<Instructor> instructors = insRep.getAll(); //get all
 //            insRepo.update(ins); // updates Instructor
 //            insRepo.deleteById(UUID.fromString("c8ad0689-b393-4ca9-b8a0-13a184538297")); //Delete By ID
-            System.out.println(ins.toString());
+//            insRepo.getInstructorNameAndCourseName();
+//        insRepo.getInstructorNameAndYoutubeChannel();
+        insRepo.getInstructorNameAndStudentsCourseID();
+
+//        System.out.println(ins.toString());
+//        insRepo.testLAZY();
 
     }
     static void CourseTesting(){
@@ -49,13 +55,16 @@ public class Main {
 //
             CourseRepository courseRepo = new CourseRepository();
 //            courseRepo.save(cours);
-            Course cours =  courseRepo.getById(UUID.fromString("1a397d89-38cb-4dcc-a953-986ccc5b616b")); // GET BY ID
+//            Course cours =  courseRepo.getById(UUID.fromString("1a397d89-38cb-4dcc-a953-986ccc5b616b")); // GET BY ID
 //            List<Course> courses = courseRepo.getAll(); //get all
 //            courseRepo.update(cours); // updates Instructor
 //            courseRepo.deleteById(UUID.fromString("dcf852f8-324d-444e-a20e-7f07c39541b6")); //Delete By ID
 //
-            System.out.println(cours.toString());
+//            System.out.println(cours.toString());
 //            System.out.println(courses.get(0).getName());
+//        courseRepo.getCourseNameAndStudents();
+        courseRepo.getCourseNameAndStudentsAdvanced();
+
 
     }
     static void InstructorDetailsTest(){
@@ -93,17 +102,10 @@ public class Main {
     public static void main(String[] args) {
         try{
 
-
-            CourseTesting();
+//            CourseTesting();
 //            InstructorDetailsTest();
-//            InstructorTesting();
+            InstructorTesting();
 //            StudentTesting();
-
-
-
-
-
-
 
         } catch (Exception e) {
             e.printStackTrace();
